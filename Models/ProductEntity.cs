@@ -6,8 +6,8 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public virtual CategoryEntity Category { get; set; } = null!;
-        public virtual StorageEntity Storage { get; set; } = null!;
+        public virtual CategoryEntity? Category { get; set; }
+        public virtual StorageEntity? Storage { get; set; }
 
     }
 }

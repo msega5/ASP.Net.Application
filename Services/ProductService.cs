@@ -32,6 +32,7 @@ namespace ASP.Net.Application.Services
             }
         }
 
+        
         public IEnumerable<ProductDto> GetProducts()
         {
             using (_context)

@@ -25,7 +25,7 @@ namespace ASP.Net.Application
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
-       => optionsBuilder.UseNpgsql(_connectionString).UseLazyLoadingProxies();
+       => optionsBuilder.UseLazyLoadingProxies().UseNpgsql(_connectionString);
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
@@ -37,7 +37,7 @@ namespace ASP.Net.Application
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ProductEntity>(entity =>
-            {                
+            {
                 entity.HasKey(x => x.Id);
                 entity.HasIndex(x => x.Name).IsUnique();
 
@@ -59,7 +59,7 @@ namespace ASP.Net.Application
             });
 
             modelBuilder.Entity<CategoryEntity>(entity =>
-            {                
+            {
                 entity.HasKey(x => x.Id);
                 entity.HasIndex(x => x.Name).IsUnique();
 
@@ -73,7 +73,7 @@ namespace ASP.Net.Application
             });
 
             modelBuilder.Entity<StorageEntity>(entity =>
-            {                
+            {
                 entity.HasKey(x => x.Id);
                 entity.HasIndex(x => x.Name).IsUnique();
 
@@ -86,6 +86,6 @@ namespace ASP.Net.Application
                       .IsRequired();
             });
         }
-    
+
     }
 }

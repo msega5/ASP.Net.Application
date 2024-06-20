@@ -1,4 +1,4 @@
-﻿using Microsoft.Identity.Client.Extensions.Msal;
+﻿
 
 namespace ASP.Net.Application.Models
 {

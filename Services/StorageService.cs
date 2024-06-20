@@ -2,7 +2,6 @@
 using ASP.Net.Application.Models;
 using AutoMapper;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Identity.Client.Extensions.Msal;
 
 namespace ASP.Net.Application.Services
 {
