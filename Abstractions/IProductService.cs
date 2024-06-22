@@ -6,5 +6,5 @@ namespace ASP.Net.Application.Abstractions
     {
         IEnumerable<ProductDto> GetProducts();
         int AddProduct(ProductDto product);
-    }
+    }   
 }

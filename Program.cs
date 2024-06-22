@@ -1,4 +1,3 @@
-using ASP.Net.Application;
 using ASP.Net.Application.Abstractions;
 using ASP.Net.Application.Mapper;
 using ASP.Net.Application.Mutations;
@@ -7,7 +6,6 @@ using ASP.Net.Application.Services;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ASP.Net.Application
 {
@@ -36,7 +34,7 @@ namespace ASP.Net.Application
             builder.Services
                 .AddGraphQLServer()
                 .AddQueryType<MySimpleQuery>()
-                .AddMutationType<MySimpleMutation>();
+                .AddMutationType<AddProductMutation>();
 
 
             var app = builder.Build();
