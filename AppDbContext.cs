@@ -23,7 +23,6 @@ namespace ASP.Net.Application
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-
        => optionsBuilder.UseLazyLoadingProxies().UseNpgsql(_connectionString);
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

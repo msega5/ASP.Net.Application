@@ -1,6 +1,7 @@
 ﻿using ASP.Net.Application.Abstractions;
 using ASP.Net.Application.Models;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace ASP.Net.Application.Services
@@ -44,6 +45,21 @@ namespace ASP.Net.Application.Services
                 _cache.Set("products", products, TimeSpan.FromMinutes(30));
 
                 return products;
+
+            }
+        }
+
+        public IEnumerable<ProductEntity> GetProductsFromStorage()
+        {
+            using (_context)
+            {
+                if (_cache.TryGetValue("productsFromStorage", out List<StorageEntity> productsFromStorage))
+                    return (IEnumerable<ProductEntity>)productsFromStorage;
+
+                productsFromStorage = _context.Storages.Include(x => x.Products).ToList();
+                _cache.Set("productsFromStorage", productsFromStorage, TimeSpan.FromMinutes(30));
+
+                return (IEnumerable<ProductEntity>)productsFromStorage;
 
             }
         }

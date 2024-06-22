@@ -6,6 +6,7 @@ using ASP.Net.Application.Services;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 namespace ASP.Net.Application
 {
@@ -14,22 +15,22 @@ namespace ASP.Net.Application
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            //builder.Configuration.GetConnectionString("db");
+            
             builder.Services.AddMemoryCache();
             builder.Services.AddAutoMapper(typeof(MapperProfile));
-            builder.Services.AddPooledDbContextFactory<AppDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("db")));
+            //builder.Services.AddPooledDbContextFactory<AppDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("db")));
 
             builder.Services.AddTransient<IProductService, ProductService>();
             builder.Services.AddTransient<IStorageService, StorageService>();
             builder.Services.AddTransient<ICategoryService, CategoryService>();
+
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
             builder.Host.ConfigureContainer<ContainerBuilder>(cb =>
             {
                 cb.Register(c => new AppDbContext(builder.Configuration.GetConnectionString("db"))).InstancePerDependency();
             });
-            //builder.Services.AddDbContext<AppDbContext>(conf=>conf.UseNpgsql(builder.Configuration.GetConnectionString("db")));
 
+            //builder.Services.AddDbContext<AppDbContext>(conf=>conf.UseNpgsql(builder.Configuration.GetConnectionString("db")));
 
             builder.Services
                 .AddGraphQLServer()
